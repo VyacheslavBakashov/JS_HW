@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Игра в угадай число</title>
+</head>
+<body>
+  <script>
+    let n = Math.floor(Math.random() * 1000);
+    console.log(n);
+    while (true) {
+      inp = prompt('Введите неотрицательное число');
+      if (isNaN(inp) || inp === '') {
+        alert( 'Ошибка ввода. Введите число' );
+      } else if (inp > n) {
+        alert( 'Больше чем нужно' );
+      } else if (inp < n) {
+        alert( 'Меньше чем нужно' );
+      } else {
+        alert( 'Всё верно!' );
+        break;
+      }
+    }
+  </script>   
+</body>
+</html>
