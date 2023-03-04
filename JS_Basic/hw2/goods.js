@@ -91,14 +91,17 @@ function deleteFromBasket(id){
 
 function countCostAmount() {
     let totalCost = 0;
-    let item_price, index
+    let totalAmount = 0;
+    let itemPrice, index, itemAmount
     for (let i = 0; i < basket.length; i++) {
         index = +basket[i].goodID;
-        item_price = +catalog.find(item => item.id === index).price;
-        totalCost += basket[i].amount * item_price;
+        itemAmount = +basket[i].amount
+        itemPrice = +catalog.find(item => item.id === index).price;
+        totalCost += itemAmount * itemPrice;
+        totalAmount += itemAmount
     };
 
-    return totalCost
+    return {totalAmount: totalAmount, totalSumm: totalCost,}
 };
 
 
@@ -113,4 +116,4 @@ console.log(basket);
 addToBasket(1, 3);
 addToBasket(2, 1);
 console.log(basket);
-console.log(countCost());
+console.log(countCostAmount())
