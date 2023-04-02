@@ -1,0 +1,27 @@
+.rotator__case {
+  display: none;
+}
+
+.rotator__case_active {
+  display: inline;
+}
+
+.rotator__case[data-color='red'] {
+  color: red;
+}
+
+.rotator__case[data-color='green'] {
+  color: green;
+}
+
+.rotator__case[data-color="black"] {
+  color: black;
+}
+
+.rotator__case[data-color='blue'] {
+  color: blue;
+}
+
+.rotator__case[data-color='grey'] {
+  color: grey;
+}
