@@ -4,20 +4,19 @@ const input = document.querySelector('#chat-widget__input');
 const messages = document.querySelector('.chat-widget__messages');
 const chatWindow = document.querySelector('.chat-widget__messages-container');
 const answers = ['Привет', 'Hello', 'Здравствуйте'];
+let timeoutId;
 
 chatBadge.addEventListener('click', () => {
   chat.classList.toggle('chat-widget_active')
 });
 
 
-// const events = Array.from(['focus', 'blur', 'change'])
-
-function sendMessage(message) {
-  let timeoutId;
+function sendMessage(message, fromClient=false) {
   let time = new Date().toLocaleTimeString();
-  clearTimeout(timeoutId);
+  let classClient =  (fromClient) ? ' message_client' : '';
+
    messages.innerHTML += `
-    <div class="message">
+    <div class="message${classClient}">
       <div class="message__time">
         ${time}
       </div>
@@ -31,21 +30,13 @@ function sendMessage(message) {
 
 
 input.addEventListener('change', () => {
-  let botMessage, timeoutId;
+  clearTimeout(timeoutId);
+  let botMessage;
   let time = new Date().toLocaleTimeString();
 
   if (!input.value.trim()) { return }
 
-  messages.innerHTML += `
-    <div class="message message_client">
-      <div class="message__time">
-        ${time}
-      </div>
-      <div class="message__text">
-        ${input.value}
-     </div>
-    </div>`;
-
+  sendMessage(input.value, true);
   chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
   input.value = '';
 
@@ -54,11 +45,10 @@ input.addEventListener('change', () => {
     sendMessage(botMessage)
   }, 800);
 
-  // timeoutId = setTimeout(() => {
-  //   botMessage = 'Что-то вы задумались... Я могу вам чем-то помочь?';
-  //   botAnswer(botMessage)
-  // }, 5000);
-
+  timeoutId = setTimeout(() => {
+    botMessage = 'Что-то вы задумались... Я могу вам чем-то помочь?';
+    sendMessage(botMessage)
+  }, 30000);
 })
 
 
