@@ -9,8 +9,32 @@ chatBadge.addEventListener('click', () => {
   chat.classList.toggle('chat-widget_active')
 });
 
-input.addEventListener('change', () => {
+
+// const events = Array.from(['focus', 'blur', 'change'])
+
+function sendMessage(message) {
+  let timeoutId;
   let time = new Date().toLocaleTimeString();
+  clearTimeout(timeoutId);
+   messages.innerHTML += `
+    <div class="message">
+      <div class="message__time">
+        ${time}
+      </div>
+      <div class="message__text">
+        ${message}
+      </div>
+    </div>`;
+
+  chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
+}
+
+
+input.addEventListener('change', () => {
+  let botMessage, timeoutId;
+  let time = new Date().toLocaleTimeString();
+
+  if (!input.value.trim()) { return }
 
   messages.innerHTML += `
     <div class="message message_client">
@@ -20,73 +44,21 @@ input.addEventListener('change', () => {
       <div class="message__text">
         ${input.value}
      </div>
-    </div>
-  `;
+    </div>`;
+
+  chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
+  input.value = '';
 
   setTimeout(() => {
-    let timeAnswer = new Date().toLocaleTimeString()
-    messages.innerHTML += `
-      <div class="message">
-        <div class="message__time">
-          ${timeAnswer}
-        </div>
-        <div class="message__text">
-          ${answers[Math.floor(Math.random() * answers.length)]}
-        </div>
-      </div>
-    `;
-    chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
-  }, 1000)
+    botMessage = answers[Math.floor(Math.random() * answers.length)];
+    sendMessage(botMessage)
+  }, 800);
 
-  input.value = '';
-  chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
+  // timeoutId = setTimeout(() => {
+  //   botMessage = 'Что-то вы задумались... Я могу вам чем-то помочь?';
+  //   botAnswer(botMessage)
+  // }, 5000);
 
-});
+})
 
-
-// const events = Array.from(['focus', 'blur', 'change'])
-//
-// function botAnswer(message) {
-//   let time = new Date().toLocaleTimeString();
-//    messages.innerHTML += `
-//     <div class="message">
-//       <div class="message__time">
-//         ${time}
-//       </div>
-//       <div class="message__text">
-//         ${message}
-//       </div>
-//     </div>
-//   `;
-//   chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
-// }
-//
-// events.forEach(function(event) {
-//   input.addEventListener(event, () => {
-//     let time = new Date().toLocaleTimeString();
-//     let botMessage;
-//     let timeoutId = setTimeout(() => {
-//
-//       botMessage = 'Что-то вы задумались... Я могу вам чем-то помочь?';
-//       botAnswer(botMessage)
-//     }, 10000)
-//     if (['change'].includes(event)) {
-//       botMessage = answers[Math.floor(Math.random() * answers.length)];
-//       messages.innerHTML += `
-//         <div class="message message_client">
-//           <div class="message__time">
-//             ${time}
-//           </div>
-//           <div class="message__text">
-//             ${input.value}
-//          </div>
-//         </div>
-//       `;
-//       chatWindow.scrollBy(0, chatWindow.getBoundingClientRect().bottom);
-//       input.value = '';
-//       botAnswer(botMessage);
-//       clearTimeout(timeoutId);
-//     }
-//   })
-// })
 
