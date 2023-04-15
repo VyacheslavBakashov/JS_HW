@@ -32,7 +32,7 @@ btnSignIn.addEventListener('click', (e) => {
   xhr.responseType = 'json';
   xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/auth');
 
-  xhr.addEventListener('readystatechange', () => {
+  xhr.addEventListener('load', () => {
     if (xhr.readyState === xhr.DONE && xhr.status === 201) {
       let response = xhr.response;
 
