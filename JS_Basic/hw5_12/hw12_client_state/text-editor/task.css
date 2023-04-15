@@ -1,0 +1,22 @@
+textarea {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  padding: 10px 20px;
+  margin: 0 0 20px 0;
+  font-family: Golos, Arial, sans-serif;
+  border: 1px solid #e2e2e2;
+  box-sizing: border-box;
+}
+
+.button-clear {
+  background-color: #d7d5d5;
+  border-color: #333333;
+  color: #000000;
+}
+
+.button-clear:hover {
+  background-color: #0066ff;
+  border-color: #333333;
+  color: #ffffff;
+}
