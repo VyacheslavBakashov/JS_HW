@@ -1,0 +1,35 @@
+body {
+  font-family: Arial;
+}
+
+.card {
+  width: 625px;
+}
+
+.poll__title {
+  margin-bottom: 20px;
+}
+
+.poll__answer {
+  background: #ffffff;
+  color: #000000;
+  border-color: #333333;
+}
+
+.poll__answer:hover{
+  background: #3636fc;
+  color: #ffffff;
+}
+
+._hidden {
+  display: none;
+}
+
+.poll__answers {
+  display: none;
+}
+
+.poll__answers_active {
+  display: flex;
+  gap: 5px;
+}
