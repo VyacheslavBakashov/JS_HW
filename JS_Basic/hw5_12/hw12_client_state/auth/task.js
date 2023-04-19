@@ -33,16 +33,14 @@ btnSignIn.addEventListener('click', (e) => {
   xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/auth');
 
   xhr.addEventListener('load', () => {
-    if (xhr.readyState === xhr.DONE && xhr.status === 201) {
-      let response = xhr.response;
+    let response = xhr.response;
 
-      if (response.success) {
-        doWelcome(response.user_id)
-        myStorage.setItem('user', JSON.stringify(response.user_id));
-      } else {
-        alert('Неверный логин или пароль');
-        controls.forEach(elm => elm.value = '')
-      }
+    if (response.success) {
+      doWelcome(response.user_id)
+      myStorage.setItem('user', JSON.stringify(response.user_id));
+    } else {
+      alert('Неверный логин или пароль');
+      signForm.reset();
     }
   })
   xhr.send(formData);
